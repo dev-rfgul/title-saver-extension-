@@ -11,6 +11,29 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     videoSelector.click();
 
     setTimeout(function () {
+    //   // Like the video
+    //   const buttonViewModel = document.querySelector("button-view-model");
+    //   const likeButton = buttonViewModel.querySelector("button");
+    //   likeButton.click();
+// Select the button-view-model element
+const buttonViewModel = document.querySelector('button-view-model');
+
+// Check if the button-view-model element is found
+if (buttonViewModel) {
+    // Get the underlying button element
+    const likeButton = buttonViewModel.querySelector('button');
+
+    // Check if the like button is found
+    if (likeButton) {
+        // Simulate a click event on the like button
+        likeButton.click();
+    } else {
+        console.error('Like button not found within button-view-model');
+    }
+} else {
+    console.error('button-view-model element not found');
+}
+
       // Scroll
       window.scrollBy(0, 400);
       console.log("Scrolled");
