@@ -11,28 +11,53 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     videoSelector.click();
 
     setTimeout(function () {
-    //   // Like the video
-    //   const buttonViewModel = document.querySelector("button-view-model");
-    //   const likeButton = buttonViewModel.querySelector("button");
-    //   likeButton.click();
-// Select the button-view-model element
-const buttonViewModel = document.querySelector('button-view-model');
+      // copying the title of the video
 
-// Check if the button-view-model element is found
-if (buttonViewModel) {
-    // Get the underlying button element
-    const likeButton = buttonViewModel.querySelector('button');
+      // Find the yt-formatted-string element directly
+      const titleElement = document.querySelector("#title yt-formatted-string");
 
-    // Check if the like button is found
-    if (likeButton) {
-        // Simulate a click event on the like button
-        likeButton.click();
-    } else {
-        console.error('Like button not found within button-view-model');
-    }
-} else {
-    console.error('button-view-model element not found');
-}
+      // Check if the title element is found and has text content
+      if (titleElement && titleElement.textContent) {
+        // Get the text content of the yt-formatted-string element
+        const title = titleElement.textContent.trim();
+        // alert(title);
+        // Log the title
+        // console.log("Title of the video:", title);
+
+        // Set the title in the local storage
+        // Set the title in local storage
+        chrome.storage.local.set({ title: title }, () => {
+          console.log("The title of the video is: " + title);
+          // You can add any other code that depends on the title being stored successfully
+        });
+
+        // Retrieve the title from local storage
+        chrome.storage.local.get(["title"], (result) => {
+          console.log("The title of the video is: " + result.title);
+          // You can add any code that needs to use the retrieved title here
+        });
+      } else {
+        console.error("Title element not found or has no text content");
+      }
+
+      // like the video
+      const buttonViewModel = document.querySelector("button-view-model");
+
+      // Check if the button-view-model element is found
+      if (buttonViewModel) {
+        // Get the underlying button element
+        const likeButton = buttonViewModel.querySelector("button");
+
+        // Check if the like button is found
+        if (likeButton) {
+          // Simulate a click event on the like button
+          likeButton.click();
+        } else {
+          console.error("Like button not found within button-view-model");
+        }
+      } else {
+        console.error("button-view-model element not found");
+      }
 
       // Scroll
       window.scrollBy(0, 400);

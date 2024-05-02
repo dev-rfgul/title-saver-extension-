@@ -3,7 +3,7 @@
     "name": "Title Saver",
     "version": "1.0",
     "description": "Get the title of the video and save it in local storage.",
-    "permissions": ["activeTab","tabs"],
+    "permissions": ["activeTab","tabs","storage"],
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
